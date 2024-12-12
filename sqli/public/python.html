@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Python playground</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.11.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
+</head>
+
+<body>
+    <!-- TODO: Fill in our custom application code here... -->
+    <script type="py">
+    from pyscript import document, window
+
+    # Grab the editor script reference.
+    editor = document.querySelector('#editor')
+    origin = window.origin
+
+    # Update the live content of the editor.
+    editor.code = f"""import requests
+
+    response = requests.get('{origin}')
+
+    print(response.text)
+    """
+    </script>
+    <script type="py-editor" config="./pyscript.json" id="editor">
+    </script>
+</body>
+
+</html>
