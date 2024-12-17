@@ -25,12 +25,12 @@
     for char in chars:
         password = "password" + char
         response = requests.post('{origin}/sqli/login', 
-            data={'username': 'admin', 'password': password}
+            data={{'username': 'admin', 'password': password}}
         )
         if 'success' in response.text:
-            print(f"Found password: {password}")
+            print(f"Found password: {{password}}")
         else:
-            print(f"Wrong password: {password}")
+            print(f"Wrong password: {{password}}")
     """
     </script>
     <script type="py-editor" config="./pyscript.json" id="editor">
