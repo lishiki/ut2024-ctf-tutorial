@@ -17,12 +17,15 @@ st.set_page_config(
 
 controller = CookieController()
 
-with open("challenges.yml") as f:
+with open("ctf.yml") as f:
     challenge_data = f.read()
 
 challenge_data = challenge_data.format(**os.environ)
 
-challenges = yaml.safe_load(challenge_data)
+ctf_yaml = yaml.safe_load(challenge_data)
+
+ctf = ctf_yaml["ctf"]
+challenges = ctf_yaml["challenges"]
 
 
 # MySQL connection setup
@@ -230,7 +233,8 @@ def display_cards():
 # Main function
 def main():
     set_state()
-    st.title("UT MINI CTF 2024")
+    st.title(ctf["name"])
+    st.markdown(ctf["description"])
 
     if "logged_in" not in st.session_state:
         st.session_state.logged_in = False

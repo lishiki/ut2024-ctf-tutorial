@@ -1,0 +1,57 @@
+ctf:
+  name: UT MINI CTF 2024
+  description: |
+    ### ルール
+    - Flag format: `CTF{{[0-9a-zA-Z_]+}}`
+    - スコアサーバーを攻撃しないでください。
+    - XSSができた(alertを表示できた)あとは、そのURLを http://ut2024-challenge.sszk.net/validate に送信してFlagを入手してください。
+      - 本来はXSSを利用してSessionを盗んだり、Cookieを盗んだりするのがXSSの攻撃方法ですが、この問題ではAlertを表示するだけでFlagを入手できるようになっています。
+    - Pythonの実行環境がない場合は、簡易的にブラウザ上で動作するPython http://ut2024-challenge.sszk.net/sqli/python.html を利用することができます。
+challenges:
+  - id: 1
+    name: "XSS 1"
+    description: |
+      Cross-Site Scripting challenge 1
+      - alert()を実行してください
+      - URL: http://ut2024-challenge.sszk.net/xss1
+    flag: "{FLAG_XSS1}"
+
+  - id: 2
+    name: "XSS 2"
+    description: |
+      Cross-Site Scripting challenge 2
+      - alert()を実行してください
+      - URL: http://ut2024-challenge.sszk.net/xss2
+    flag: "{FLAG_XSS2}"
+
+  - id: 3
+    name: "XSS 3"
+    description: |
+      Cross-Site Scripting challenge 3
+      - alert()を実行してください
+      - URL: http://ut2024-challenge.sszk.net/xss3
+    flag: "{FLAG_XSS3}"
+
+  - id: 4
+    name: "SQL Injection 1"
+    description: |
+      SQL Injection challenge 1
+      - adminとしてログインしてください
+      - URL: http://ut2024-challenge.sszk.net/sqli/index.html
+    flag: "{FLAG_SQLI1}"
+
+  - id: 5
+    name: "SQL Injection 2"
+    description: |
+      SQL Injection challenge 2
+      - adminのパスワードを取得してください
+      - URL: http://ut2024-challenge.sszk.net/sqli/index.html
+    flag: "{FLAG_SQLI2}"
+
+  - id: 6
+    name: "SQL Injection 3"
+    description: |
+      SQL Injection challenge 3
+      - adminとしてログインしてください
+      - URL: http://ut2024-challenge.sszk.net/sqli/index2.html
+    flag: "{FLAG_SQLI3}"
