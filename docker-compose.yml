@@ -2,35 +2,46 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "30080:80"
+      - "80:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/.htpasswd:/etc/nginx/.htpasswd
-    depends_on:
-      - xss
-      - sqli
   xss:
     build: ./xss
     env_file:
-      - .env.sample
+      - .env
   sqli:
     build: ./sqli
+    env_file:
+      - .env
     volumes:
       - ./sqli/public:/app/public
     depends_on:
       mysql:
         condition: service_healthy
+  scoreboard:
+    build: ./scoreboard
     env_file:
-      - .env.sample
+      - .env
+    volumes:
+      - ./scoreboard/public:/app/public
+      - ./scoreboard/app.py:/app/app.py
+    depends_on:
+      mysql:
+        condition: service_healthy
   mysql:
     image: mysql:8.0.40
     environment:
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
     volumes:
       - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - mysql_data:/var/lib/mysql
     healthcheck:
       test: mysqladmin ping -h 127.0.0.1
       start_period: 5s
       interval: 5s
       timeout: 5s
       retries: 10
+  
+volumes:
+  mysql_data:
