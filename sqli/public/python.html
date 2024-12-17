@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <!-- TODO: Fill in our custom application code here... -->
+    <h1>Python playground</h1>
     <script type="py">
     from pyscript import document, window
 
@@ -21,9 +21,16 @@
     # Update the live content of the editor.
     editor.code = f"""import requests
 
-    response = requests.get('{origin}')
-
-    print(response.text)
+    chars = '0123456789'
+    for char in chars:
+        password = "password" + char
+        response = requests.post('{origin}/sqli/login', 
+            data={{'username': 'admin', 'password': password}}
+        )
+        if 'success' in response.text:
+            print(f"Found password: {password}")
+        else:
+            print(f"Wrong password: {password}")
     """
     </script>
     <script type="py-editor" config="./pyscript.json" id="editor">
