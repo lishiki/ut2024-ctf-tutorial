@@ -18,6 +18,7 @@ const db2 = mysql.createConnection({
 
 app.use(bodyParser.urlencoded());
 app.use(express.static("public"));
+app.use("/sqli", express.static("public"));
 
 const FLAG1 = process.env.FLAG_SQLI1;
 const FLAG2 = process.env.FLAG_SQLI2;
@@ -70,7 +71,7 @@ db2.connect((err) => {
 });
 
 // ログインエンドポイント
-app.post("/login", (req, res) => {
+app.post("/sqli/login", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
 
@@ -88,7 +89,7 @@ app.post("/login", (req, res) => {
   });
 });
 
-app.post("/login2", (req, res) => {
+app.post("/sqli/login2", (req, res) => {
   // single quote 絶対ゆるさない
   const username = req.body.username.replace(/'/g, "");
   const password = req.body.password.replace(/'/g, "");
