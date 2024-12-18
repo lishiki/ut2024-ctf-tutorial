@@ -99,6 +99,7 @@ app.get("/validate", (req, res) => {
 app.post("/validate", (req, res) => {
   if (req.body.url) {
     const url = new URL(req.body.url);
+    url.protocol = "http:";
     url.host = "localhost:3000";
 
     (async () => {
