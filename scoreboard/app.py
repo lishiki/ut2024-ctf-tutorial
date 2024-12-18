@@ -211,7 +211,7 @@ def display_cards():
                 else:
                     flag = container.text_input("Flag", key=challenge["name"])
                     if flag:
-                        if flag == challenge["flag"]:
+                        if flag.lower() == challenge["flag"].lower():
                             solve(st.session_state.user_id, challenge["id"])
                             st.rerun()
                         else:
@@ -242,7 +242,7 @@ def main():
     if st.session_state.logged_in:
         display_cards()
     else:
-        option = st.selectbox("Choose an option", ["Login", "Register"])
+        option = st.selectbox("Choose an option", ["Register", "Login"])
         if option == "Login":
             login()
         elif option == "Register":
