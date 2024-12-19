@@ -5,30 +5,28 @@ services:
       - "80:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/.htpasswd:/etc/nginx/.htpasswd
+    restart: always
   xss:
     build: ./xss
     env_file:
       - .env
+    restart: always
   sqli:
     build: ./sqli
     env_file:
       - .env
-    volumes:
-      - ./sqli/public:/app/public
     depends_on:
       mysql:
         condition: service_healthy
+    restart: always
   scoreboard:
     build: ./scoreboard
     env_file:
       - .env
-    volumes:
-      - ./scoreboard/public:/app/public
-      - ./scoreboard/app.py:/app/app.py
     depends_on:
       mysql:
         condition: service_healthy
+    restart: always
   mysql:
     image: mysql:8.0.40
     environment:
@@ -42,6 +40,7 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+    restart: always
   
 volumes:
   mysql_data:
