@@ -2,7 +2,7 @@ ctf:
   name: UT MINI CTF 2024
   description: |
     ### ルール
-    - Flag format: `CTF{{[0-9a-zA-Z_]+}}`
+    - Flag format: `CTF{{[0-9a-zA-Z_]+}}` (今回は大文字小文字は区別しません。)
     - スコアサーバーを攻撃しないでください。
     - XSSができた(alertを表示できた)あとは、そのURLを http://ut2024-challenge.sszk.net/validate に送信してFlagを入手してください。
       - 本来はXSSを利用してSessionを盗んだり、Cookieを盗んだりするのがXSSの攻撃方法ですが、この問題ではAlertを表示するだけでFlagを入手できるようになっています。
