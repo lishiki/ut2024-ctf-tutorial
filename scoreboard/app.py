@@ -85,7 +85,7 @@ def solve(username, challenge_id):
     conn.close()
 
 
-@st.cache_data(ttl=60)
+@st.cache_data(ttl=10)
 def get_scores():
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -104,7 +104,7 @@ def get_scores():
     return scores
 
 
-@st.cache_data(ttl=60)
+@st.cache_data(ttl=10)
 def get_users():
     conn = get_db_connection()
     cursor = conn.cursor()
